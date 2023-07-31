@@ -11,8 +11,10 @@ namespace IndianStatesCensusAnalyser_Problem
 {
     public class CSV_Census
     {
+
         public int ReadStateCensusData(string path)
         {
+
             using (var reader = new StreamReader(path))
             {
                 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
@@ -24,7 +26,9 @@ namespace IndianStatesCensusAnalyser_Problem
                     }
                     return record.Count() - 1;
                 }
+
             }
+
 
         }
     }
