@@ -9,20 +9,20 @@ using System.Threading.Tasks;
 
 namespace IndianStatesCensusAnalyser_Problem
 {
-    public class StateCensusAnalyser
+    public class CSV_Census
     {
         public int ReadStateCensusData(string path)
         {
             using (var reader = new StreamReader(path))
             {
-                using(var csv= new CsvReader(reader,CultureInfo.InvariantCulture))
+                using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                 {
-                    var record=csv.GetRecords<StateCensusData>().ToList();
-                    foreach(var data in record)
+                    var record = csv.GetRecords<StateCensusData>().ToList();
+                    foreach (var data in record)
                     {
-                        Console.WriteLine(data.State+" "+data.DensityPerSqKm+" "+data.Population+" "+data.AreaInSqKm+" ");
+                        Console.WriteLine(data.State + " " + data.DensityPerSqKm + " " + data.Population + " " + data.AreaInSqKm + " ");
                     }
-                    return record.Count()-1;
+                    return record.Count() - 1;
                 }
             }
 
