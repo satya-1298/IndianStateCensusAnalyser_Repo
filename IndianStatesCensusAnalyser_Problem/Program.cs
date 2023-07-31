@@ -8,7 +8,7 @@ namespace IndianStatesCensusAnalyser_Problem
 {
     public class Program
     {
-        public static string path = @"C:\Users\PC\Desktop\RFP288\IndianStateCensusAnalyser_Repo\IndianStatesCensusAnalyser_Problem\Files\StateCensusData.csv";
+        public static string path = @"C:\Users\PC\Desktop\RFP288\IndianStateCensusAnalyser_Repo\IndianStatesCensusAnalyser_Problem\Files\StateCensusDat";
         static void Main(string[] args)
         {
             while (true)

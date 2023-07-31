@@ -12,7 +12,7 @@ namespace IndianStatesCensusAnalyser_Test
         StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser();
         public static string stateCensusCSVFile_Path = @"C:\Users\PC\Desktop\RFP288\IndianStateCensusAnalyser_Repo\IndianStatesCensusAnalyser_Problem\Files\StateCensusData.csv";
         public static string inCorrect_Path = @"C:\Users\PC\Desktop\RFP288\IndianStateCensusAnalyser_Repo\IndianStatesCensusAnalyser_Problem\Files";
-
+        public static string inCorrect_Type_Path = @"C:\Users\PC\Desktop\RFP288\IndianStateCensusAnalyser_Repo\IndianStatesCensusAnalyser_Problem\Files\StateCensusData.txt";
         [Test]
         public void GivenStateCensusData_WhenAnalyzed_ShouldReturnNoOfRecordsMatches()
         {
@@ -26,9 +26,23 @@ namespace IndianStatesCensusAnalyser_Test
             {
                 int records = stateCensusAnalyser.ReadStateCensusData(inCorrect_Path);
             }
-            catch (Exception ex)
+            catch (StateCensusException ex)
             {
                 Assert.AreEqual(ex.Message, "File is not found");
+            }
+        }
+        [Test]
+        public void GivenStateCensus_CSV_File_CorrectBut_Type_IncorrectReturns_CustomException()
+        {
+           
+            try
+            {
+                CSV_Census cSV_Census= new CSV_Census();
+                int records = cSV_Census.ReadStateCensusData(inCorrect_Type_Path);
+            }
+            catch (StateCensusException ex)
+            {
+                Assert.AreEqual(ex.Message, "File is not CSV type");
             }
         }
     }

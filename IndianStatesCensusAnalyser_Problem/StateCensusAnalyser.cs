@@ -32,7 +32,7 @@ namespace IndianStatesCensusAnalyser_Problem
                 }
                 else
                 {
-                    throw new StateCensusException(StateCensusException.ExceptionType.CSV_FILE_NOT_FOUND, "File Does not exists");
+                    throw new StateCensusException(StateCensusException.ExceptionType.FILE_NOT_FOUND, "File Does not exists");
                 }
             }
             catch(StateCensusException sr)
