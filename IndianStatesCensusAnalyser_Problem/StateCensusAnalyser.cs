@@ -13,36 +13,25 @@ namespace IndianStatesCensusAnalyser_Problem
     {
         public int ReadStateCensusData(string path)
         {
-            try
+            
+            if (!File.Exists(path))
+                throw new StateCensusException(StateCensusException.ExceptionType.FILE_NOT_FOUND, "File path not found");
+            var read = File.ReadAllLines(path);
+            string header = read[0];
+            if (header.Contains("/"))
+                throw new StateCensusException(StateCensusException.ExceptionType.DELIMETER_INCORRECT, "Incorrect delimeter");
+            using (var reader = new StreamReader(path))
             {
-                if(File.Exists(path))
+                using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                 {
-                    using (var reader = new StreamReader(path))
+                    var record = csv.GetRecords<StateCensusData>().ToList();
+                    foreach (var data in record)
                     {
-                        using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
-                        {
-                            var record = csv.GetRecords<StateCensusData>().ToList();
-                            foreach (var data in record)
-                            {
-                                Console.WriteLine(data.State + " " + data.DensityPerSqKm + " " + data.Population + " " + data.AreaInSqKm + " ");
-                            }
-                        }
+                        Console.WriteLine(data.State + " " + data.DensityPerSqKm + " " + data.Population + " " + data.AreaInSqKm + " ");
                     }
-
                 }
-                else
-                {
-                    throw new StateCensusException(StateCensusException.ExceptionType.FILE_NOT_FOUND, "File Does not exists");
-                }
-            }
-            catch(StateCensusException sr)
-            {
-                Console.WriteLine(sr.Message);
             }
             return 0;
-
-
-
         }
     }
 }
