@@ -69,6 +69,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CSV_Census.cs" />
+    <Compile Include="CSV_Code_Model.cs" />
+    <Compile Include="CSV_State.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StateCensusAnalyser.cs" />
