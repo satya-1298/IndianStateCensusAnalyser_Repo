@@ -85,5 +85,17 @@ namespace IndianStatesCensusAnalyser_Test
                 Assert.AreEqual(ex.Message, "File path not found");
             }
         }
+        [Test]
+        public void GivenCSV_StateData_WhenGivenIncorrect_Extension_Return_CustomException()
+        {
+            try
+            {
+                int records = cSV_State.DisplayData(inCorrect_Type_Path);
+            }
+            catch (StateCensusException ex)
+            {
+                Assert.AreEqual(ex.Message, "File is not CSV type");
+            }
+        }
     }
 }

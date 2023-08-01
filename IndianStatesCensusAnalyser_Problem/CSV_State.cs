@@ -16,6 +16,8 @@ namespace IndianStatesCensusAnalyser_Problem
         {
             if (!File.Exists(path))
                 throw new StateCensusException(StateCensusException.ExceptionType.FILE_NOT_FOUND, "File path not found");
+            if(!path.EndsWith(".csv"))
+                throw new StateCensusException(StateCensusException.ExceptionType.CSV_FILE_NOT_FOUND, "File is not CSV type");
             using (var read=new StreamReader(path))
             {
                 using(var records=new CsvReader(read, CultureInfo.InvariantCulture))
