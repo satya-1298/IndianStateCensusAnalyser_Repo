@@ -9,24 +9,22 @@ using System.Threading.Tasks;
 
 namespace IndianStatesCensusAnalyser_Problem
 {
-    public class CSV_State
+    public class StateCodeAnalyser
     {
-
         public int DisplayData(string path)
         {
-            using (var read=new StreamReader(path))
+            using (var read = new StreamReader(path))
             {
-                using(var records=new CsvReader(read, CultureInfo.InvariantCulture))
+                using (var records = new CsvReader(read, CultureInfo.InvariantCulture))
                 {
                     var data = records.GetRecords<CSV_Code_Model>().ToList();
                     foreach (var record in data)
                     {
-                        Console.WriteLine(record.SrNo+"  "+record.StateName+"  "+record.TIN+"  "+record.StateCode+"  ");
+                        Console.WriteLine(record.SrNo + "  " + record.StateName + "  " + record.TIN + "  " + record.StateCode + "  ");
                     }
-                    return data.Count()-1;
+                    return data.Count() - 1;
                 }
             }
-            
         }
     }
 }

@@ -14,6 +14,8 @@ namespace IndianStatesCensusAnalyser_Test
         public static string inCorrect_Path = @"C:\Users\PC\Desktop\RFP288\IndianStateCensusAnalyser_Repo\IndianStatesCensusAnalyser_Problem\Files";
         public static string inCorrect_Type_Path = @"C:\Users\PC\Desktop\RFP288\IndianStateCensusAnalyser_Repo\IndianStatesCensusAnalyser_Problem\Files\StateCensusData.txt";
         public static string delimeter_Path = @"C:\Users\PC\Desktop\RFP288\IndianStateCensusAnalyser_Repo\IndianStatesCensusAnalyser_Problem\Files\StateCensusDataDelimeter.csv";
+        public static string CSV_Code_Path = @"C:\Users\PC\Desktop\RFP288\IndianStateCensusAnalyser_Repo\IndianStatesCensusAnalyser_Problem\Files\StateCodeData.csv";
+
         [Test]
         public void GivenStateCensusData_WhenAnalyzed_ShouldReturnNoOfRecordsMatches()
         {
@@ -60,6 +62,15 @@ namespace IndianStatesCensusAnalyser_Test
             {
                 Assert.AreEqual(ex.Message, "Incorrect delimeter");
             }
+        }
+        //UC2-TC1
+        [Test]
+        public void GivenCSV_stateData_WhenAnalyzed_ShouldReturnNoOfRecordsMatches()
+        {
+            CSV_State cSV_State= new CSV_State();
+            StateCodeAnalyser stateCodeAnalyser = new StateCodeAnalyser();
+            Assert.AreEqual(cSV_State.DisplayData(CSV_Code_Path), stateCodeAnalyser.DisplayData(CSV_Code_Path));
+
         }
     }
 }

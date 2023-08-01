@@ -29,9 +29,10 @@ namespace IndianStatesCensusAnalyser_Problem
                     {
                         Console.WriteLine(data.State + " " + data.DensityPerSqKm + " " + data.Population + " " + data.AreaInSqKm + " ");
                     }
+                    return record.Count()-1;
                 }
             }
-            return 0;
+           
         }
     }
 }

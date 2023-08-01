@@ -76,6 +76,7 @@
     <Compile Include="StateCensusAnalyser.cs" />
     <Compile Include="StateCensusData.cs" />
     <Compile Include="StateCensusException.cs" />
+    <Compile Include="StateCodeAnalyser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
