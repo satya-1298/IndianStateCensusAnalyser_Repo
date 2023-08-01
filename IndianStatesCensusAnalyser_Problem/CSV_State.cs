@@ -18,6 +18,10 @@ namespace IndianStatesCensusAnalyser_Problem
                 throw new StateCensusException(StateCensusException.ExceptionType.FILE_NOT_FOUND, "File path not found");
             if(!path.EndsWith(".csv"))
                 throw new StateCensusException(StateCensusException.ExceptionType.CSV_FILE_NOT_FOUND, "File is not CSV type");
+            var reader = File.ReadAllLines(path);
+            string header = reader[0];
+            if (header.Contains("/"))
+                throw new StateCensusException(StateCensusException.ExceptionType.DELIMETER_INCORRECT, "Incorrect delimeter");
             using (var read=new StreamReader(path))
             {
                 using(var records=new CsvReader(read, CultureInfo.InvariantCulture))

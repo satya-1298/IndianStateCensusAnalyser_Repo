@@ -16,7 +16,7 @@ namespace IndianStatesCensusAnalyser_Test
         public static string inCorrect_Type_Path = @"C:\Users\PC\Desktop\RFP288\IndianStateCensusAnalyser_Repo\IndianStatesCensusAnalyser_Problem\Files\StateCensusData.txt";
         public static string delimeter_Path = @"C:\Users\PC\Desktop\RFP288\IndianStateCensusAnalyser_Repo\IndianStatesCensusAnalyser_Problem\Files\StateCensusDataDelimeter.csv";
         public static string CSV_Code_Path = @"C:\Users\PC\Desktop\RFP288\IndianStateCensusAnalyser_Repo\IndianStatesCensusAnalyser_Problem\Files\StateCodeData.csv";
-
+        public static string CSVCodeDelimeterPath = @"C:\Users\PC\Desktop\RFP288\IndianStateCensusAnalyser_Repo\IndianStatesCensusAnalyser_Problem\Files\StateCodeDataDelimeter.csv";
         [Test]
         public void GivenStateCensusData_WhenAnalyzed_ShouldReturnNoOfRecordsMatches()
         {
@@ -85,6 +85,7 @@ namespace IndianStatesCensusAnalyser_Test
                 Assert.AreEqual(ex.Message, "File path not found");
             }
         }
+        //tc-3
         [Test]
         public void GivenCSV_StateData_WhenGivenIncorrect_Extension_Return_CustomException()
         {
@@ -97,5 +98,19 @@ namespace IndianStatesCensusAnalyser_Test
                 Assert.AreEqual(ex.Message, "File is not CSV type");
             }
         }
+        //tc-4
+        [Test]
+        public void GivenCSV_StateData_File_When_CorrectButDelimiter_Incorrect_Returns_CustomException()
+        {
+            try
+            {
+                int records = cSV_State.DisplayData(CSVCodeDelimeterPath);
+            }
+            catch (StateCensusException ex)
+            {
+                Assert.AreEqual(ex.Message, "Incorrect delimeter");
+            }
+        }
+
     }
 }
