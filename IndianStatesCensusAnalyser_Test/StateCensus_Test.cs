@@ -10,6 +10,7 @@ namespace IndianStatesCensusAnalyser_Test
     public class StateCensus_Test
     {
         StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser();
+        CSV_State cSV_State = new CSV_State();
         public static string stateCensusCSVFile_Path = @"C:\Users\PC\Desktop\RFP288\IndianStateCensusAnalyser_Repo\IndianStatesCensusAnalyser_Problem\Files\StateCensusData.csv";
         public static string inCorrect_Path = @"C:\Users\PC\Desktop\RFP288\IndianStateCensusAnalyser_Repo\IndianStatesCensusAnalyser_Problem\Files";
         public static string inCorrect_Type_Path = @"C:\Users\PC\Desktop\RFP288\IndianStateCensusAnalyser_Repo\IndianStatesCensusAnalyser_Problem\Files\StateCensusData.txt";
@@ -67,10 +68,22 @@ namespace IndianStatesCensusAnalyser_Test
         [Test]
         public void GivenCSV_stateData_WhenAnalyzed_ShouldReturnNoOfRecordsMatches()
         {
-            CSV_State cSV_State= new CSV_State();
             StateCodeAnalyser stateCodeAnalyser = new StateCodeAnalyser();
             Assert.AreEqual(cSV_State.DisplayData(CSV_Code_Path), stateCodeAnalyser.DisplayData(CSV_Code_Path));
 
+        }
+        //tc-2
+        [Test]
+        public void GivenCSV_State_DataWhenGivenInCorrectFile_Return_CustomException()
+        {
+            try
+            {
+                int records = cSV_State.DisplayData(inCorrect_Path);
+            }
+            catch (StateCensusException ex)
+            {
+                Assert.AreEqual(ex.Message, "File path not found");
+            }
         }
     }
 }

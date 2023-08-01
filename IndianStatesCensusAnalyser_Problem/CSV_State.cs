@@ -14,6 +14,8 @@ namespace IndianStatesCensusAnalyser_Problem
 
         public int DisplayData(string path)
         {
+            if (!File.Exists(path))
+                throw new StateCensusException(StateCensusException.ExceptionType.FILE_NOT_FOUND, "File path not found");
             using (var read=new StreamReader(path))
             {
                 using(var records=new CsvReader(read, CultureInfo.InvariantCulture))
